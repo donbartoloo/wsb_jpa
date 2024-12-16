@@ -1,5 +1,8 @@
 package com.jpacourse.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.jpacourse.persistence.enums.BloodType;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -44,6 +47,14 @@ public class PatientEntity {
 
 	@OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<VisitEntity> visits;
+
+	/**
+	 * Dodatkowe pole inne niż String
+	 */
+
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = true)
+	private BloodType bloodType;
 
 	public Long getId() {
 		return id;
@@ -115,5 +126,13 @@ public class PatientEntity {
 
 	public void setVisits(List<VisitEntity> visits) {
 		this.visits = visits;
+	}
+
+	public BloodType getBloodType() {
+		return bloodType;
+	}
+
+	public void setBloodType(BloodType bloodType) {
+		this.bloodType = bloodType;
 	}
 }

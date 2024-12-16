@@ -1,5 +1,7 @@
 package com.jpacourse.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -65,13 +67,6 @@ public class VisitEntity {
 		this.time = time;
 	}
 
-	public PatientEntity getPatient() {
-		return patient;
-	}
-
-	public void setPatient(PatientEntity patient) {
-		this.patient = patient;
-	}
 
 	public DoctorEntity getDoctor() {
 		return doctor;
@@ -87,6 +82,13 @@ public class VisitEntity {
 
 	public void setMedicalTreatments(List<MedicalTreatmentEntity> medicalTreatments) {
 		this.medicalTreatments = medicalTreatments;
+	}
+
+	public PatientEntity getPatient() {
+		return patient;
+	}
+	public void setPatient(PatientEntity patient) {
+		this.patient = patient;
 	}
 
 }
