@@ -7,7 +7,11 @@ import com.jpacourse.persistence.entity.VisitEntity;
 import com.jpacourse.rest.exception.EntityNotFoundException;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Repository
 public class PatientDaoImpl extends AbstractDao<PatientEntity, Long> implements PatientDao
@@ -31,5 +35,13 @@ public class PatientDaoImpl extends AbstractDao<PatientEntity, Long> implements 
         patient.getVisits().add(visit);
         entityManager.merge(patient);
 
+    }
+
+    public List<PatientEntity> findByLastName(String lastName) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<PatientEntity> query = cb.createQuery(PatientEntity.class);
+        Root<PatientEntity> root = query.from(PatientEntity.class);
+        query.select(root).where(cb.equal(root.get("lastName"), lastName));
+        return entityManager.createQuery(query).getResultList();
     }
 }

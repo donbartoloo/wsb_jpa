@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class PatientController {
 
@@ -21,5 +23,10 @@ public class PatientController {
             return patient;
         }
         throw new EntityNotFoundException(id);
+    }
+
+    @GetMapping("/patients/lastname/{lastName}")
+    public List<PatientTO> findPatientsByLastName(@PathVariable String lastName) {
+        return patientService.findByLastName(lastName);
     }
 }
