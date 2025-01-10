@@ -43,4 +43,11 @@ public class PatientServiceImpl implements PatientService {
                 .map(VisitMapper::mapToTO)
                 .collect(Collectors.toList());
     }
+    @Override
+    public List<PatientTO> findPatientsWithMoreThanXVisits(int numberOfVisits) {
+        List<PatientEntity> patients = patientDao.findPatientsWithMoreThanXVisits(numberOfVisits);
+        return patients.stream()
+                .map(PatientMapper::mapToTO)
+                .collect(Collectors.toList());
+    }
 }

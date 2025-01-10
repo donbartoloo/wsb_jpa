@@ -37,6 +37,7 @@ public class PatientDaoImpl extends AbstractDao<PatientEntity, Long> implements 
 
     }
 
+    @Override
     public List<PatientEntity> findByLastName(String lastName) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<PatientEntity> query = cb.createQuery(PatientEntity.class);
@@ -52,5 +53,13 @@ public class PatientDaoImpl extends AbstractDao<PatientEntity, Long> implements 
             throw new EntityNotFoundException(patientId);
         }
         return patient.getVisits();
+    }
+
+    @Override
+    public List<PatientEntity> findPatientsWithMoreThanXVisits(int numberOfVisits) {
+        String jpql = "SELECT p FROM PatientEntity p WHERE SIZE(p.visits) > :numberOfVisits";
+        return entityManager.createQuery(jpql, PatientEntity.class)
+                .setParameter("numberOfVisits", numberOfVisits)
+                .getResultList();
     }
 }

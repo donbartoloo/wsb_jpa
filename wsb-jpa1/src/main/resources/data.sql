@@ -34,6 +34,8 @@ insert into visit(id, description, time, doctor_id, patient_id)
             values (1, 'Wizyta', '2024-11-25 10:30:00',1,1);
 insert into visit(id, description, time, doctor_id, patient_id)
             values (2, 'Wizyta', '2024-11-26 12:15:00',2,2);
+insert into visit(id, description, time, doctor_id, patient_id)
+            values (3, 'Wizyta', '2024-11-26 12:17:00',1,2);
 
 -- MEDICAL TREATMENT
 insert into medical_treatment(id, description, type, visit_id)

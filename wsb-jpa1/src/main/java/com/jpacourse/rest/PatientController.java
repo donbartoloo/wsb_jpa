@@ -35,4 +35,9 @@ public class PatientController {
     public List<VisitTO> findVisitsByPatientId(@PathVariable final Long id) {
         return patientService.findVisitsByPatientId(id);
     }
+
+    @GetMapping("/patients/more-than/{numberOfVisits}/visits")
+    public List<PatientTO> findPatientsWithMoreThanXVisits(@PathVariable final int numberOfVisits) {
+        return patientService.findPatientsWithMoreThanXVisits(numberOfVisits);
+    }
 }
