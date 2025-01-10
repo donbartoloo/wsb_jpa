@@ -58,6 +58,9 @@ public class PatientEntity {
 	@Column(nullable = true)
 	private BloodType bloodType;
 
+	@Version
+	private int version;
+
 	public Long getId() {
 		return id;
 	}
@@ -141,4 +144,8 @@ public class PatientEntity {
 	public double getWeight() {	return weight;	}
 
 	public void setWeight(double weight) {	this.weight = weight;	}
+
+	public int getVersion() {	return version;	}
+
+	public void setVersion(int version) {	this.version = version;}
 }

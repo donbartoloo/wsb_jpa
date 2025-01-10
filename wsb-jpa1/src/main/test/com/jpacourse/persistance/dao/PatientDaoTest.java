@@ -9,9 +9,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.OptimisticLockException;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -19,6 +22,9 @@ public class PatientDaoTest {
 
     @Autowired
     private PatientDao patientDao;
+
+    @Autowired
+    private EntityManager entityManager;
 
     @Transactional
     @Test
@@ -63,5 +69,26 @@ public class PatientDaoTest {
         assertThat(patients).isNotNull();
         assertThat(patients.size()).isGreaterThan(0); // Lista powinna zawierać co najmniej jednego pacjenta
         assertThat(patients.get(0).getWeight()).isLessThan(maxWeight); // Pierwszy pacjent musi mieć wagę < 70.0
+    }
+
+    @Transactional
+    @Test
+    public void testShouldThrowOptimisticLockException() {
+        // given
+        Long patientId = 1L; // Zakładamy, że pacjent o ID 1 istnieje
+        PatientEntity patient1 = entityManager.find(PatientEntity.class, patientId);
+        PatientEntity patient2 = entityManager.find(PatientEntity.class, patientId);
+
+        // when
+        patient1.setWeight(70.0); // Zmiana wagi w jednym kontekście
+        entityManager.persist(patient1);
+        entityManager.flush(); // Zatwierdzenie zmian z pierwszego kontekstu
+
+        // then
+        patient2.setWeight(75.0); // Próba zmiany w drugim kontekście
+        assertThatThrownBy(() -> {
+            entityManager.persist(patient2);
+            entityManager.flush(); // Zatwierdzenie zmian z drugiego kontekstu
+        }).isInstanceOf(OptimisticLockException.class);
     }
 }
