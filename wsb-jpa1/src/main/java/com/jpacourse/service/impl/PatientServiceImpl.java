@@ -1,8 +1,11 @@
 package com.jpacourse.service.impl;
 
 import com.jpacourse.dto.PatientTO;
+import com.jpacourse.dto.VisitTO;
 import com.jpacourse.mapper.PatientMapper;
+import com.jpacourse.mapper.VisitMapper;
 import com.jpacourse.persistence.dao.PatientDao;
+import com.jpacourse.persistence.entity.VisitEntity;
 import com.jpacourse.service.PatientService;
 import com.jpacourse.persistence.entity.PatientEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +36,11 @@ public class PatientServiceImpl implements PatientService {
                 .map(PatientMapper::mapToTO)
                 .collect(Collectors.toList());
     }
-
+    @Override
+    public List<VisitTO> findVisitsByPatientId(Long patientId) {
+        List<VisitEntity> visits = patientDao.findVisitsByPatientId(patientId);
+        return visits.stream()
+                .map(VisitMapper::mapToTO)
+                .collect(Collectors.toList());
+    }
 }

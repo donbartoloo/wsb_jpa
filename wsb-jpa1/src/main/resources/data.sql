@@ -25,6 +25,9 @@ insert into patient (id, first_name, last_name, telephone_number, email, patient
 insert into patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, address_id, blood_type)
             values (2, 'Zofia', 'Mazur', '884727333',
                     'zofia.mazur@domain.com', '2', '1995-12-13', 3, 'A_POSITIVE');
+insert into patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, address_id, blood_type)
+            values (3, 'Adam', 'Mazur', '854857123',
+                    'adam.mazur@domain.com', '1', '1993-11-10', 3, 'A_POSITIVE');
 
 -- VISIT
 insert into visit(id, description, time, doctor_id, patient_id)

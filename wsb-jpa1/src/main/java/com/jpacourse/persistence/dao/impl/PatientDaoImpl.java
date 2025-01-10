@@ -44,4 +44,13 @@ public class PatientDaoImpl extends AbstractDao<PatientEntity, Long> implements 
         query.select(root).where(cb.equal(root.get("lastName"), lastName));
         return entityManager.createQuery(query).getResultList();
     }
+
+    @Override
+    public List<VisitEntity> findVisitsByPatientId(Long patientId) {
+        PatientEntity patient = entityManager.find(PatientEntity.class, patientId);
+        if (patient == null) {
+            throw new EntityNotFoundException(patientId);
+        }
+        return patient.getVisits();
+    }
 }
