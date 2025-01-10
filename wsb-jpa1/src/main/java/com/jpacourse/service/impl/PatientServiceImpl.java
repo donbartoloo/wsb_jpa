@@ -50,4 +50,12 @@ public class PatientServiceImpl implements PatientService {
                 .map(PatientMapper::mapToTO)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<PatientTO> findPatientsWithWeightLessThan(double weight) {
+        List<PatientEntity> patients = patientDao.findPatientsWithWeightLessThan(weight);
+        return patients.stream()
+                .map(PatientMapper::mapToTO)
+                .collect(Collectors.toList());
+    }
 }

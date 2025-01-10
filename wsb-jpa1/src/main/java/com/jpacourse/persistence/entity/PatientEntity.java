@@ -1,6 +1,5 @@
 package com.jpacourse.persistence.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.jpacourse.persistence.enums.BloodType;
 
 import java.time.LocalDate;
@@ -32,6 +31,9 @@ public class PatientEntity {
 
 	@Column(nullable = false)
 	private LocalDate dateOfBirth;
+
+	@Column(nullable = false)
+	private double weight;
 
 	/**
 	 * Relacja jednostronna od strony dziecka (Patient) do rodzica (Address)
@@ -135,4 +137,8 @@ public class PatientEntity {
 	public void setBloodType(BloodType bloodType) {
 		this.bloodType = bloodType;
 	}
+
+	public double getWeight() {	return weight;	}
+
+	public void setWeight(double weight) {	this.weight = weight;	}
 }

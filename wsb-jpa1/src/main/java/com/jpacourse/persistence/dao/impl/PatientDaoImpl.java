@@ -62,4 +62,12 @@ public class PatientDaoImpl extends AbstractDao<PatientEntity, Long> implements 
                 .setParameter("numberOfVisits", numberOfVisits)
                 .getResultList();
     }
+
+    @Override
+    public List<PatientEntity> findPatientsWithWeightLessThan(double weight) {
+        String jpql = "SELECT p FROM PatientEntity p WHERE p.weight < :weight";
+        return entityManager.createQuery(jpql, PatientEntity.class)
+                .setParameter("weight", weight)
+                .getResultList();
+    }
 }

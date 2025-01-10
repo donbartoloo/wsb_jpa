@@ -1,8 +1,6 @@
 package com.jpacourse.dto;
 
 import com.jpacourse.persistence.entity.AddressEntity;
-import com.jpacourse.persistence.entity.VisitEntity;
-import com.jpacourse.persistence.enums.BloodType;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -29,6 +27,8 @@ public class PatientTO implements Serializable {
     private List<VisitTO> visits;
 
     private String bloodType;
+
+    private double weight;
 
     public Long getId() { return id; }
 
@@ -69,4 +69,8 @@ public class PatientTO implements Serializable {
     public String getBloodType() { return bloodType; }
 
     public void setBloodType(String bloodType) { this.bloodType = bloodType; }
+
+    public double getWeight() { return weight;  }
+
+    public void setWeight(double weight) {  this.weight = weight;   }
 }

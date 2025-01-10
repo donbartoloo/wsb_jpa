@@ -40,4 +40,9 @@ public class PatientController {
     public List<PatientTO> findPatientsWithMoreThanXVisits(@PathVariable final int numberOfVisits) {
         return patientService.findPatientsWithMoreThanXVisits(numberOfVisits);
     }
+
+    @GetMapping("/patients/weight-less-than/{weight}")
+    public List<PatientTO> findPatientsWithWeightLessThan(@PathVariable final double weight) {
+        return patientService.findPatientsWithWeightLessThan(weight);
+    }
 }

@@ -19,15 +19,15 @@ insert into doctor (id, first_name, last_name, telephone_number, email, doctor_n
                     'beata.nowak@domain.com','2', 'OCULIST', 2);
 
 -- PATIENT
-insert into patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, address_id, blood_type)
+insert into patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, address_id, blood_type, weight)
             values (1, 'Krzysztof', 'Wiśniewski', '888777333',
-                    'krzysztof.wisniewski@domain.com', '1', '1985-06-15', 3, 'AB_NEGATIVE');
-insert into patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, address_id, blood_type)
+                    'krzysztof.wisniewski@domain.com', '1', '1985-06-15', 3, 'AB_NEGATIVE', 80.3);
+insert into patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, address_id, blood_type, weight)
             values (2, 'Zofia', 'Mazur', '884727333',
-                    'zofia.mazur@domain.com', '2', '1995-12-13', 3, 'A_POSITIVE');
-insert into patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, address_id, blood_type)
+                    'zofia.mazur@domain.com', '2', '1995-12-13', 3, 'A_POSITIVE', 67.5);
+insert into patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, address_id, blood_type, weight)
             values (3, 'Adam', 'Mazur', '854857123',
-                    'adam.mazur@domain.com', '1', '1993-11-10', 3, 'A_POSITIVE');
+                    'adam.mazur@domain.com', '1', '1993-11-10', 3, 'A_POSITIVE', 126.9);
 
 -- VISIT
 insert into visit(id, description, time, doctor_id, patient_id)

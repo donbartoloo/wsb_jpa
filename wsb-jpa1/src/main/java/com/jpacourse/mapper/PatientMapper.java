@@ -3,7 +3,6 @@ package com.jpacourse.mapper;
 import com.jpacourse.dto.PatientTO;
 import com.jpacourse.dto.VisitTO;
 import com.jpacourse.persistence.entity.PatientEntity;
-import com.jpacourse.persistence.entity.VisitEntity;
 import com.jpacourse.persistence.enums.BloodType;
 
 import java.util.List;
@@ -26,6 +25,7 @@ public final class PatientMapper {
         patientTO.setPatientNumber(patientEntity.getPatientNumber());
         patientTO.setDateOfBirth(patientEntity.getDateOfBirth());
         patientTO.setAddress(patientEntity.getAddress());
+        patientTO.setWeight(patientEntity.getWeight());
 
         if (patientEntity.getBloodType() != null) {
             patientTO.setBloodType(patientEntity.getBloodType().name());
@@ -55,6 +55,7 @@ public final class PatientMapper {
         patientEntity.setPatientNumber(patientTO.getPatientNumber());
         patientEntity.setDateOfBirth(patientTO.getDateOfBirth());
         patientEntity.setAddress(patientTO.getAddress());
+        patientEntity.setWeight(patientTO.getWeight());
         if (patientTO.getBloodType() != null) {
             patientEntity.setBloodType(BloodType.valueOf(patientTO.getBloodType().toUpperCase()));
         }

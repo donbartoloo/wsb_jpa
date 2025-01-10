@@ -7,8 +7,9 @@ import java.util.List;
 
 public interface PatientService {
 
-    public PatientTO findById(final Long id);
+    PatientTO findById(final Long id);
     List<PatientTO> findByLastName(String lastName);
     List<VisitTO> findVisitsByPatientId(Long patientId);
     List<PatientTO> findPatientsWithMoreThanXVisits(int numberOfVisits);
+    List<PatientTO> findPatientsWithWeightLessThan(double weight);
 }
